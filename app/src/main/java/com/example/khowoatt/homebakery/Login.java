@@ -233,4 +233,8 @@ public class Login extends AppCompatActivity {
         objBuilder.show();
     } //Builder ERROR
 
+    public void toregis(View view) {
+        Intent intent = new Intent(Login.this,Register.class);
+        startActivity(intent);
+    }
 }

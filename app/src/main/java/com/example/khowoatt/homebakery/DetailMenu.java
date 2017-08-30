@@ -31,9 +31,7 @@ public class DetailMenu extends AppCompatActivity {
         String image = getIntent().getStringExtra("image");
         Picasso.with(DetailMenu.this).load(image).into(detailimageView);
     }
-    public void addorder(View view) {
 
-    }
     public void onClickBack (View view){
         finish();
     }

@@ -26,8 +26,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
     public static final String Member_EMAIL = "email";
     public static final String Member_PHONE = "phone";
     public static final String Member_TYPE = "type";
-    public String CREATE_MEMBER_TABLE = "create table" +Member_TABLE+ " ("+Member_ID+" text primary key," + " " +
-            ""+Member_USER+" text,"+Member_PASSWORD+" text, "+Member_EMAIL+" text,"+Member_PHONE+" text,"+Member_TYPE+" text);";
+    public String CREATE_MEMBER_TABLE ="create table "+Member_TABLE+" ("+Member_ID+" text primary key, " + " "+Member_USER+" text, "
+            +Member_PASSWORD+" text, "+Member_EMAIL+" text, "+Member_PHONE+" text, "+Member_TYPE+" text);";
 
     public static final String Menu_TABLE = "menutable";
     public static final String Menu_ID = "id_menu";
@@ -42,11 +42,12 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
     public static final String Order_TABLE = "ordertable";
     public static final String Order_ID = "id_order";
     public static final String Order_ID_MEMBER = "id_member";
+    //public static final String Order_ID_MENU = "id_menu";
     public static final String Order_DATE = "date_order";
     public static final String Order_PRICE = "price_order";
     public static final String Order_STATUS = "status";
     private static final String CREATE_ORDER_TABLE = "create table "+Order_TABLE+" ("+Order_ID+" text primary key," +
-            " "+Order_ID_MEMBER+" text,"+Order_DATE+" text, "+Order_PRICE+" text, "+Order_STATUS+" text);";
+            " "+Order_ID_MEMBER+" text, "+Order_DATE+" text, "+Order_PRICE+" text, "+Order_STATUS+" text);";
 
     public static final String OrderList_TABLE = "orderlisttable";
     public static final String OrderList_ID_ORDER = "id_order";
@@ -56,10 +57,12 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
     private static final String CREATE_ORDERLIST_TABLE = "create table "+OrderList_TABLE+" ("+OrderList_ID_ORDER+" integer primary key," +
             " "+OrderList_ID_MENU+" text,"+OrderList_AMOUNT+" text, "+OrderLIST_TOTAL+" text);";
 
+
+
+
     public MySQLiteOpenHelper(Context context) {
         super(context, DataBase_Name, null, DataBase_Version);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -71,13 +74,19 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
         db.execSQL(CREATE_MENU_TABLE);
         db.execSQL(CREATE_ORDER_TABLE);
         db.execSQL(CREATE_ORDERLIST_TABLE);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String DROP_MEMBER_TABLE = "DROP TABLE IF EXISTS" + Menu_TABLE;
+
+        String DROP_MEMBER_TABLE = "DROP TABLE IF EXISTS " + Member_TABLE;
+
         db.execSQL(DROP_MEMBER_TABLE);
-        Log.i(TAG, "Upgrade Database from" + oldVersion + " to " + newVersion);
+
+        Log.i(TAG, "Upgrade Database from " + oldVersion + " to " + newVersion);
+
         onCreate(db);
+
     }
 }

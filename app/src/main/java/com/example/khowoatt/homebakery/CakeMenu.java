@@ -13,7 +13,7 @@ import com.example.khowoatt.homebakery.Database.MenuTable;
 public class CakeMenu extends AppCompatActivity {
     private MenuTable objMenuTable;
     private ListView listView;
-    private String[] id_cake,name,price,image,detail;
+    private String[] name,price,image,detail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class CakeMenu extends AppCompatActivity {
     }
     private void createListView() {
         //MenuTable objCasephone = new MenuTable(this);
-        final String[] idcake = objMenuTable.readALLMenuTable2(0);
+
         final String[] strname = objMenuTable.readALLMenuTable2(1);
         final String[] strprice = objMenuTable.readALLMenuTable2(3);
         final String[] strimage = objMenuTable.readALLMenuTable2(4);
@@ -37,14 +37,14 @@ public class CakeMenu extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                id_cake = idcake;
+
                 name = strname;
                 price = strprice;
                 image = strimage;
                 detail = detailcake;
 
                 Intent intent = new Intent(CakeMenu.this, DetailMenu.class);
-                intent.putExtra("id", idcake[position]);
+
                 intent.putExtra("name", strname[position]);
                 intent.putExtra("price",strprice[position]);
                 intent.putExtra("image",strimage[position]);

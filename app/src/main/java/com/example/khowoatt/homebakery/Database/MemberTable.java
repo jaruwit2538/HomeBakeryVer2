@@ -36,12 +36,21 @@ public class MemberTable {
         objContentValues.put(objMySQLiteOpenHelper.Member_TYPE,strtype);
         return readSQLiteDataBase.insert(objMySQLiteOpenHelper.Member_TABLE,null,objContentValues);
     }
+    public long addNewMember(String struser,String strpass,String stremail,String strphone,String strtype){
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(objMySQLiteOpenHelper.Member_USER,struser);
+        objContentValues.put(objMySQLiteOpenHelper.Member_PASSWORD,strpass);
+        objContentValues.put(objMySQLiteOpenHelper.Member_EMAIL,stremail);
+        objContentValues.put(objMySQLiteOpenHelper.Member_PHONE,strphone);
+        objContentValues.put(objMySQLiteOpenHelper.Member_TYPE,strtype);
+        return readSQLiteDataBase.insert(objMySQLiteOpenHelper.Member_TABLE,null,objContentValues);
+    }
 
     public String[] searchUSERPASSWORD(String strUser) {
         try {
             String[] strResult = null;
             Cursor objCursor = readSQLiteDataBase.query(Member_TABLE, new String[]{Member_ID, Member_USER,
-                    Member_PASSWORD, Member_EMAIL, Member_PHONE, Member_PHONE, Member_TYPE}, Member_USER + "=?", new String[]{String.valueOf(strUser)}, null, null, null);
+                    Member_PASSWORD, Member_EMAIL, Member_PHONE, Member_TYPE}, Member_USER + "=?", new String[]{String.valueOf(strUser)},null,null,null,null);
             if (objCursor != null) {
                 if (objCursor.moveToFirst()) {
                     strResult = new String[6];
@@ -56,4 +65,24 @@ public class MemberTable {
             return null;
         }
     }
+    public String[] readUSERPASSWORD(String strUser) {
+        try {
+            String[] strResult = null;
+            Cursor objCursor = readSQLiteDataBase.query(Member_TABLE, new String[]{Member_USER,
+                    Member_PASSWORD, Member_EMAIL, Member_PHONE, Member_TYPE}, Member_USER + "=?", new String[]{String.valueOf(strUser)},null,null,null,null);
+            if (objCursor != null) {
+                if (objCursor.moveToFirst()) {
+                    strResult = new String[6];
+                    for (int i = 0; i < 6; i++) {
+                        strResult[i] = objCursor.getString(i);
+                    }
+                }
+            }
+            objCursor.close();
+            return strResult;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }
