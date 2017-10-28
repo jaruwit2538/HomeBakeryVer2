@@ -37,14 +37,13 @@ public class MenuTable {
         objContentValues.put(objMySQLiteOpenHelper.Menu_PRICE, price_menu);
         objContentValues.put(objMySQLiteOpenHelper.Menu_PICTURE, picture_menu);
         objContentValues.put(objMySQLiteOpenHelper.Menu_TYPE, type);
-
         return readSqLiteDatabase.insert(objMySQLiteOpenHelper.Menu_TABLE, null, objContentValues);
     }
     public String[] readALLMenuTable4(int int4) {
         try {
             String[] strResult = null;
             Cursor objCursor = readSqLiteDatabase.query(Menu_TABLE,
-                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"=4",null,null,null,null,null);
+                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"='สแน็คบ็อกซ์'",null,null,null,null,null);
             if(objCursor != null){
                 if(objCursor.moveToFirst()){
                     int num = objCursor.getCount();
@@ -65,7 +64,7 @@ public class MenuTable {
         try {
             String[] strResult = null;
             Cursor objCursor = readSqLiteDatabase.query(Menu_TABLE,
-                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"=3",null,null,null,null,null);
+                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"='ขนมปัง'",null,null,null,null,null);
             if(objCursor != null){
                 if(objCursor.moveToFirst()){
                     int num = objCursor.getCount();
@@ -86,7 +85,7 @@ public class MenuTable {
         try {
             String[] strResult = null;
             Cursor objCursor = readSqLiteDatabase.query(Menu_TABLE,
-                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"=2",null,null,null,null,null);
+                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"='ขนมอบ'",null,null,null,null,null);
             if(objCursor != null){
                 if(objCursor.moveToFirst()){
                     int num = objCursor.getCount();
@@ -107,7 +106,7 @@ public class MenuTable {
         try {
             String[] strResult = null;
             Cursor objCursor = readSqLiteDatabase.query(Menu_TABLE,
-                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"=1",null,null,null,null,null);
+                    new String[]{Menu_ID,Menu_NAME,Menu_DETAIL,Menu_PRICE,Menu_PICTURE,Menu_TYPE},Menu_TYPE+"='เค้ก'",null,null,null,null,null);
             if(objCursor != null){
                 if(objCursor.moveToFirst()){
                     int num = objCursor.getCount();

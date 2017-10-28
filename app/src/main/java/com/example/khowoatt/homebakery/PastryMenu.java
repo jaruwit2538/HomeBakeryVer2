@@ -19,6 +19,7 @@ public class PastryMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pastry_menu);
+
         BindWidget();
         Cdatabase();
         createListView();
@@ -68,6 +69,11 @@ public class PastryMenu extends AppCompatActivity {
         new Intent(PastryMenu.this,MainActivity.class);
         finish();
     }//ลิ้งไปหน้า Menu snack
+
+    public void onClickcart(View view) {
+        Intent intent = new Intent(PastryMenu.this, ConfirmOrder.class);
+        startActivity(intent);
+    }
 
 }
 

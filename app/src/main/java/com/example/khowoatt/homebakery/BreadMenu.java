@@ -68,4 +68,9 @@ public class BreadMenu extends AppCompatActivity {
         finish();
     }//ลิ้งไปหน้า Menu snack
 
+    public void onClickcart(View view) {
+        Intent intent = new Intent(BreadMenu.this, ConfirmOrder.class);
+        startActivity(intent);
+    }
+
 }

@@ -8,6 +8,7 @@ import android.os.StrictMode;
 import android.util.Log;
 
 /**
+ *
  * Created by khowoatt on 8/29/2017.
  */
 
@@ -42,7 +43,6 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
     public static final String Order_TABLE = "ordertable";
     public static final String Order_ID = "id_order";
     public static final String Order_ID_MEMBER = "id_member";
-    //public static final String Order_ID_MENU = "id_menu";
     public static final String Order_DATE = "date_order";
     public static final String Order_PRICE = "price_order";
     public static final String Order_STATUS = "status";
@@ -57,6 +57,13 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
     private static final String CREATE_ORDERLIST_TABLE = "create table "+OrderList_TABLE+" ("+OrderList_ID_ORDER+" integer primary key," +
             " "+OrderList_ID_MENU+" text,"+OrderList_AMOUNT+" text, "+OrderLIST_TOTAL+" text);";
 
+    /*public static final String Basketcheck = "basket";
+    public static final String Id_menu = "id_menu";
+    public static final String Name_menu = "name_menu";
+    public static final String Amount = "amount";
+    public static final String Total = "total";
+    private static final String CREATE_BASKET_TABLE = "create table "+Basketcheck+" ("+Id_menu+" integer primary key," +
+            " "+Name_menu+" text,"+Amount+" text, "+Total+" text);";*/
 
 
 
@@ -70,6 +77,8 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
         Log.i(TAG, CREATE_MENU_TABLE);
         Log.i(TAG, CREATE_ORDER_TABLE);
         Log.i(TAG, CREATE_ORDERLIST_TABLE);
+        //Log.i(TAG, CREATE_BASKET_TABLE);
+        //db.execSQL(CREATE_BASKET_TABLE);
         db.execSQL(CREATE_MEMBER_TABLE);
         db.execSQL(CREATE_MENU_TABLE);
         db.execSQL(CREATE_ORDER_TABLE);
@@ -87,6 +96,5 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
         Log.i(TAG, "Upgrade Database from " + oldVersion + " to " + newVersion);
 
         onCreate(db);
-
     }
 }

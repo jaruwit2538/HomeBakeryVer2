@@ -36,15 +36,7 @@ public class MemberTable {
         objContentValues.put(objMySQLiteOpenHelper.Member_TYPE,strtype);
         return readSQLiteDataBase.insert(objMySQLiteOpenHelper.Member_TABLE,null,objContentValues);
     }
-    public long addNewMember(String struser,String strpass,String stremail,String strphone,String strtype){
-        ContentValues objContentValues = new ContentValues();
-        objContentValues.put(objMySQLiteOpenHelper.Member_USER,struser);
-        objContentValues.put(objMySQLiteOpenHelper.Member_PASSWORD,strpass);
-        objContentValues.put(objMySQLiteOpenHelper.Member_EMAIL,stremail);
-        objContentValues.put(objMySQLiteOpenHelper.Member_PHONE,strphone);
-        objContentValues.put(objMySQLiteOpenHelper.Member_TYPE,strtype);
-        return readSQLiteDataBase.insert(objMySQLiteOpenHelper.Member_TABLE,null,objContentValues);
-    }
+
 
     public String[] searchUSERPASSWORD(String strUser) {
         try {

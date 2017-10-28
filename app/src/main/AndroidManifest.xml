@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".MainMenu" />
         <activity android:name=".BreadMenu" />
         <activity android:name=".CakeMenu" />
@@ -25,7 +25,8 @@
         <activity android:name=".PastryMenu" />
         <activity android:name=".SnackMenu" />
         <activity android:name=".DetailMenu" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".ConfirmOrder" />
     </application>
 
 </manifest>

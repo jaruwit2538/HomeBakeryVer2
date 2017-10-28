@@ -35,23 +35,18 @@ public class SnackMenu extends AppCompatActivity {
         MenuListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 name = strnamesnack;
                 price = strpicsnack;
                 image = strpricesnack;
                 detail = detailsnack;
-
                 Intent intent = new Intent(SnackMenu.this, DetailMenu.class);
-
                 intent.putExtra("name", strnamesnack[position]);
                 intent.putExtra("price",strpicsnack[position]);
                 intent.putExtra("image",strpricesnack[position]);
                 intent.putExtra("detail", detailsnack[position]);
                 startActivity(intent);
-
             }
         });
-
     }
 
     public void Cdatabase(){ // Open DataBase
@@ -65,6 +60,11 @@ public class SnackMenu extends AppCompatActivity {
     public void onClickBack (View view){
         new Intent(SnackMenu.this,MainActivity.class);
         finish();
+    }
+
+    public void onClickcart(View view) {
+        Intent intent = new Intent(SnackMenu.this, ConfirmOrder.class);
+        startActivity(intent);
     }
 
 }

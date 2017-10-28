@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.khowoatt.homebakery.Database.MemberTable;
 import com.example.khowoatt.homebakery.Database.MenuTable;
@@ -176,11 +177,10 @@ public class Login extends AppCompatActivity {
         String strpass = passEditText.getText().toString().trim();
 
         //Check char zero
-        if(struser.equals("") || strpass.equals("")){
-            errorDialog("มีช่องว่าง","กรุณากรอกให้ครบ ทุกช่อง");
-
-        }else {
-            checkUSERPASSWORD(struser,strpass);
+        if(struser.equals("")||strpass.equals("")){
+            Toast.makeText(Login.this,"มีช่องว่าง กรุณากรอกให้ครบทุกช่อง",Toast.LENGTH_SHORT).show();
+        } else {
+            checkUSERPASSWORD(struser, strpass);
         }
     }
 
@@ -196,6 +196,7 @@ public class Login extends AppCompatActivity {
             }
 
         }catch(Exception e){
+
             errorDialog("ชื่อผู้ใช้ไม่ถูกต้อง","ไม่มี "+struser+" ในระบบ");
         }
     }

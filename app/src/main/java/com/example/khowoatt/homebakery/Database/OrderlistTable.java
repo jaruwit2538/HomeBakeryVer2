@@ -18,6 +18,7 @@ public class OrderlistTable {
     public static final String OrderList_TABLE = "orderlisttable";
     public static final String OrderList_ID_ORDER = "id_order";
     public static final String OrderList_ID_MENULIST = "id_menu";
+
     public static final String OrderList_AMOUNT = "amount";
     public static final String OrderLIST_TOTAL = "total";
 

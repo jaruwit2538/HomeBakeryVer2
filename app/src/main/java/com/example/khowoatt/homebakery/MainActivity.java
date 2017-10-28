@@ -49,4 +49,9 @@ public class MainActivity extends AppCompatActivity {
         new Intent(MainActivity.this,MainMenu.class);
         finish();
     }//ลิ้งไปหน้า Menu snack
+
+    public void onClickcart(View view) {
+        Intent intent = new  Intent(MainActivity.this, ConfirmOrder.class);
+        startActivity(intent);
+    }
 }

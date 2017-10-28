@@ -6,6 +6,8 @@ import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +32,7 @@ public class Register extends AppCompatActivity {
     private MenuTable objMenuTable;
     private OrderTable objOrderTable;
     private OrderlistTable objOrderListTable;
-    private EditText user,pass,email,phone;
+    private EditText user,pass,confirmPass,email,phone;
 
 
     @Override
@@ -52,26 +54,41 @@ public class Register extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.pass);
         email = (EditText) findViewById(R.id.email);
         phone = (EditText) findViewById(R.id.phone);
+        confirmPass = (EditText) findViewById(R.id.confirmpass);
 
-        String strUSERR = user.getText().toString().trim();
-        String strPASSR = pass.getText().toString().trim();
-        String strEMAILR = email.getText().toString().trim();
-        String strPHONER = phone.getText().toString().trim();
+        final String strUSERR = user.getText().toString().trim();
+        final String strPASSR = pass.getText().toString().trim();
+        final String strCONFIRM = confirmPass.getText().toString().trim();
+        final String strEMAILR = email.getText().toString().trim();
+        final String strPHONER = phone.getText().toString().trim();
 
-        if (strUSERR.equals("") || strPASSR.equals("") || strEMAILR.equals("") || strPHONER.equals("")) {
-            errorDialog("มีช่องว่าง", "กรุณากรอกให้ครบ ทุกช่อง");
-        } else {
-            //objMemberTable.addNewMember(strUSERR,strPASSR,strEMAILR,strPHONER,"user");
-            Regissuccess(strUSERR,strPASSR,strEMAILR,strPHONER);
+
+        try{
+            if (strUSERR.equals("") || strPASSR.equals("") || strEMAILR.equals("") || strPHONER.equals("") || strCONFIRM.equals("")) {
+                errorDialog("มีช่องว่าง", "กรุณากรอกให้ครบ ทุกช่อง");
+            } else {
+
+                if (strPASSR.equals(strCONFIRM)) {
+
+                    String[] check = objMemberTable.searchUSERPASSWORD(strUSERR);
+                    if (strUSERR.equals(check[1])) {
+                        Toast.makeText(Register.this, "ชื่อผู้ใช้นี้มีอยู่แล้วในระบบ", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else if (strPASSR != strCONFIRM) {
+                    confirmPass.setError("รหัสผ่านไม่ตรงกัน");
+                }
+            }
+        }catch(Exception e){
+            Regissuccess(strUSERR, strPASSR, strEMAILR, strPHONER);
         }
-
     }
 
     private void Regissuccess(final String strname,final String strPASSR,final String strEMAILR,final String strPHONER) {
         AlertDialog.Builder objBuilder = new AlertDialog.Builder(this);
         objBuilder.setIcon(R.drawable.welcome);
         objBuilder.setTitle("HomeBakery");
-        objBuilder.setMessage("ยินดีต้อนรับคุณ "+strname+" เข้าสู่ระบบ กดปุ่ม OK เพื่อเข้าใช้งาน");
+        objBuilder.setMessage("Register Success");
         objBuilder.setCancelable(false);
         objBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -82,7 +99,6 @@ public class Register extends AppCompatActivity {
                     StrictMode.ThreadPolicy myPolicy = new StrictMode
                             .ThreadPolicy.Builder().permitAll().build();
                     StrictMode.setThreadPolicy(myPolicy);
-
                     ArrayList<NameValuePair> objNameValuePairs = new ArrayList<NameValuePair>();
                     objNameValuePairs.add(new BasicNameValuePair("isAdd", "true"));
                     objNameValuePairs.add(new BasicNameValuePair("user", strname));
@@ -90,17 +106,14 @@ public class Register extends AppCompatActivity {
                     objNameValuePairs.add(new BasicNameValuePair("email", strEMAILR));
                     objNameValuePairs.add(new BasicNameValuePair("phone", strPHONER));
                     objNameValuePairs.add(new BasicNameValuePair("type", "user"));
-
                     HttpClient objHttpClient = new DefaultHttpClient();
                     HttpPost objHttpPost = new HttpPost("http://5711020660011.sci.dusit.ac.th/addDataMember.php");
                     objHttpPost.setEntity(new UrlEncodedFormEntity(objNameValuePairs, "UTF-8"));
                     objHttpClient.execute(objHttpPost);
                 }    catch (Exception e) {
-                        Toast.makeText(Register.this,
-                                "Cannot Regis", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Cannot Regis", Toast.LENGTH_SHORT).show();
                     }   //try
                 Intent intent = new Intent(Register.this, Login.class);
-                intent.putExtra("name",strname);
                 startActivity(intent);
                 dialog.dismiss();
             }
@@ -122,6 +135,10 @@ public class Register extends AppCompatActivity {
             }
         });
         objBuilder.show();
+    }
+
+    public void onClickBack(View view) {
+        finish();
     }
 
 }

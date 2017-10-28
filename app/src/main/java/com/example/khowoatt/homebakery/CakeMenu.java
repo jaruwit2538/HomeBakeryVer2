@@ -67,4 +67,9 @@ public class CakeMenu extends AppCompatActivity {
         new Intent(CakeMenu.this,MainActivity.class);
         finish();
     }
+
+    public void onClickcart(View view) {
+        Intent intent = new Intent(CakeMenu.this, ConfirmOrder.class);
+        startActivity(intent);
+    }
 }
