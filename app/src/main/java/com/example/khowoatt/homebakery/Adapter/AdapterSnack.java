@@ -1,6 +1,7 @@
 package com.example.khowoatt.homebakery.Adapter;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import com.squareup.picasso.Picasso;
  * Created by khowoatt on 8/29/2017.
  */
 
-public class AdapterSnack extends BaseAdapter {
+public class AdapterSnack extends BaseAdapter{
     private Context objContextSnack;
     private String[] namesnack,pricesnack,imagesnack;
 

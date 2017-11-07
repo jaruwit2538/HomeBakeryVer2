@@ -20,5 +20,16 @@
     <string name="titleregis">ข้อมูลส่วนตัว</string>
     <string name="createpass">สร้างรหัสผ่านของคุณ</string>
     <string name="comfirmregis">พิมพ์รหัสผ่านอีกครั้ง</string>
+    <string name="confirmorder">ยืนยัน</string>
+    <string name="providor">ผู้จัดทำ</string>
+    <string name="best">นาย ปวริศร์ อินต๊ะภูมิ
+
+    รหัส : 5711020660065
+
+    ข้อมูลการศึกษา : กำลังศึกษาชั้นปีที่ 4
+
+    หลักสูตรวิทยาศาสตร์บัณฑิต
+
+    สาขาวิชาวิทยาการคอมพิวเตอร์  </string>
 
 </resources>

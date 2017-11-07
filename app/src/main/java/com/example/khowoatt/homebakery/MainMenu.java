@@ -16,4 +16,14 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(MainMenu.this,MainActivity.class);
         startActivity(intent);
     }//ลิ้งไปหน้า Menu pastry
+
+    public void clicksupport(View view) {
+        Intent intent = new Intent(MainMenu.this, AboutUs.class);
+        startActivity(intent);
+    }
+
+    public void clickstatus(View view) {
+        Intent intent = new Intent(MainMenu.this, CheckOrder.class);
+        startActivity(intent);
+    }
 }

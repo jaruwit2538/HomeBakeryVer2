@@ -50,21 +50,14 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
             " "+Order_ID_MEMBER+" text, "+Order_DATE+" text, "+Order_PRICE+" text, "+Order_STATUS+" text);";
 
     public static final String OrderList_TABLE = "orderlisttable";
+    public static final String Order_Num = "order_num";
     public static final String OrderList_ID_ORDER = "id_order";
     public static final String OrderList_ID_MENU = "id_menu";
+    public static final String Name_Menu = "name_menu";
     public static final String OrderList_AMOUNT = "amount";
     public static final String OrderLIST_TOTAL = "total";
-    private static final String CREATE_ORDERLIST_TABLE = "create table "+OrderList_TABLE+" ("+OrderList_ID_ORDER+" integer primary key," +
-            " "+OrderList_ID_MENU+" text,"+OrderList_AMOUNT+" text, "+OrderLIST_TOTAL+" text);";
-
-    /*public static final String Basketcheck = "basket";
-    public static final String Id_menu = "id_menu";
-    public static final String Name_menu = "name_menu";
-    public static final String Amount = "amount";
-    public static final String Total = "total";
-    private static final String CREATE_BASKET_TABLE = "create table "+Basketcheck+" ("+Id_menu+" integer primary key," +
-            " "+Name_menu+" text,"+Amount+" text, "+Total+" text);";*/
-
+    private static final String CREATE_ORDERLIST_TABLE = "create table "+OrderList_TABLE+" ("+Order_Num+" integer primary key," +
+            " "+OrderList_ID_ORDER+" text,"+OrderList_ID_MENU+" text,"+Name_Menu+" text, "+OrderList_AMOUNT+" text, "+OrderLIST_TOTAL+" text);";
 
 
     public MySQLiteOpenHelper(Context context) {
@@ -77,8 +70,6 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
         Log.i(TAG, CREATE_MENU_TABLE);
         Log.i(TAG, CREATE_ORDER_TABLE);
         Log.i(TAG, CREATE_ORDERLIST_TABLE);
-        //Log.i(TAG, CREATE_BASKET_TABLE);
-        //db.execSQL(CREATE_BASKET_TABLE);
         db.execSQL(CREATE_MEMBER_TABLE);
         db.execSQL(CREATE_MENU_TABLE);
         db.execSQL(CREATE_ORDER_TABLE);

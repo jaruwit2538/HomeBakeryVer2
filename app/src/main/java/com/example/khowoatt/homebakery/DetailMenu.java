@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.khowoatt.homebakery.Database.OrderlistTable;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +39,8 @@ public class DetailMenu extends AppCompatActivity {
 
     public void onClickcart(View view) {
         Intent intent = new Intent(DetailMenu.this, ConfirmOrder.class);
-        startActivity(intent);
+        finish();
+
+
     }
 }

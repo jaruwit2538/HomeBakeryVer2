@@ -1,7 +1,10 @@
 package com.example.khowoatt.homebakery;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
@@ -35,29 +38,36 @@ public class Login extends AppCompatActivity {
     private OrderTable objOrderTable;
     private OrderlistTable objOrderListTable;
     private EditText userEditText,passEditText;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String NameMem = "nameKey";
+    public static final String idMem = "idKey";
+    SharedPreferences sharedpreferences;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Cdatabase();
-        deleteAllData();
-        synJSONtoSQLite();
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        Cdatabase();//connect Database
+        deleteAllData();//Delete Database
+        synJSONtoSQLite();//SynJson in SQLite
     }
     private void deleteAllData() {
-        SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("Homebakery.db",MODE_APPEND,null);
+        @SuppressLint("WrongConstant") SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("Homebakery.db",MODE_APPEND,null);
         objSqLiteDatabase.delete("membertable",null,null);
         objSqLiteDatabase.delete("menutable",null,null);
         objSqLiteDatabase.delete("ordertable",null,null);
         objSqLiteDatabase.delete("orderlisttable",null,null);
+
     }
 
     private void synJSONtoSQLite() {
         StrictMode.ThreadPolicy myPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(myPolicy);
 
-        //Loop 2 Time
+        //Loop 4 Time
         int intTimes = 0;
         while(intTimes <= 3){
 
@@ -145,11 +155,13 @@ public class Login extends AppCompatActivity {
 
                         default:
                             //update OrderListTable
+                            String order_num = jsonObject.getString("order_num");
                             String id_order = jsonObject.getString("id_order");
-                            String id_menulist = jsonObject.getString("id_menu");
+                            String id_menu = jsonObject.getString("id_menu");
+                            String namemenu = jsonObject.getString("name_menu");
                             String amount = jsonObject.getString("amount");
-                            String total = jsonObject.getString("Price");
-                            objOrderListTable.AddNewOrderListTable(id_order,id_menulist,amount,total);
+                            String total = jsonObject.getString("total");
+                            objOrderListTable.AddNewOrderListTable(order_num,id_order,id_menu,namemenu,amount,total);
                             break;
                     }
                 }
@@ -185,11 +197,11 @@ public class Login extends AppCompatActivity {
     }
 
     private void checkUSERPASSWORD(String struser, String strpass) {
-        try{
+        try {
             String[] strMyResult = objMemberTable.searchUSERPASSWORD(struser);
             if(strpass.equals(strMyResult[2])){
                 //password True
-                welcomDialog(struser);
+                welcomDialog(strMyResult[1],strMyResult[0]);
             }else {
                 //password False
                 errorDialog("รหัสผ่านไม่ถูกต้อง","กรุณาลองใหม่");
@@ -201,7 +213,7 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void welcomDialog(final String strname) {
+    private void welcomDialog(final String strname, final String id) {
         AlertDialog.Builder objBuilder = new AlertDialog.Builder(this);
         objBuilder.setIcon(R.drawable.welcome);
         objBuilder.setTitle("HomeBakery");
@@ -210,14 +222,22 @@ public class Login extends AppCompatActivity {
         objBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(NameMem, strname);
+                editor.putString(idMem, id);
+                editor.commit();
                 Intent intent = new Intent(Login.this, MainMenu.class);
-                intent.putExtra("name",strname);
+                intent.putExtra("namemember",strname);
+                intent.putExtra("idmember", id);
+
                 startActivity(intent);
                 dialog.dismiss();
             }
         });
         objBuilder.show();
-    } //Builder ERROR
+    }
+
+
 
     private void errorDialog(String strTitle,String strMessage) {
         AlertDialog.Builder objBuilder = new AlertDialog.Builder(this);

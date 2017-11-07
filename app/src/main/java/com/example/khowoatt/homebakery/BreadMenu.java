@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.example.khowoatt.homebakery.Adapter.AdapterBread;
 import com.example.khowoatt.homebakery.Database.MenuTable;
@@ -24,6 +25,7 @@ public class BreadMenu extends AppCompatActivity {
         BindWidget();
         Cdatabase();
         createListView();
+
     }
 
     private void createListView() {
@@ -33,7 +35,7 @@ public class BreadMenu extends AppCompatActivity {
         final String[] imagebread = objMenuTable.readALLMenuTable3(4);
         final String[] detilbread = objMenuTable.readALLMenuTable3(2);
 
-        AdapterBread objMyAdapterBread = new AdapterBread(BreadMenu.this,namebread,pricebread,imagebread);
+        final AdapterBread objMyAdapterBread = new AdapterBread(BreadMenu.this,namebread,pricebread,imagebread);
         MenuListView.setAdapter(objMyAdapterBread);
         MenuListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
