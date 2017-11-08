@@ -2,6 +2,7 @@ package com.example.khowoatt.homebakery.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
@@ -29,9 +30,9 @@ public class OrderitemTable {
         readSqLiteDatabase = objMySQLiteOpenHelper.getReadableDatabase();
     }
 
-    public long AddOrderitem(String order_Ids,String member_Ids, String menu_Ids, String date_Orders,String amounts,String prices,String sums,String statuss) {
+    public long AddOrderitem(String order_Ids, String member_Ids, String menu_Ids, String date_Orders, String amounts, String prices, String sums, String statuss) {
         ContentValues objContentValues = new ContentValues();
-        objContentValues.put(objMySQLiteOpenHelper.Order_Ids,order_Ids);
+        objContentValues.put(objMySQLiteOpenHelper.Order_Ids, order_Ids);
         objContentValues.put(objMySQLiteOpenHelper.Member_Ids, member_Ids);
         objContentValues.put(objMySQLiteOpenHelper.Menu_Ids, menu_Ids);
         objContentValues.put(objMySQLiteOpenHelper.Date_Orders, date_Orders);
@@ -42,4 +43,28 @@ public class OrderitemTable {
         return readSqLiteDatabase.insert(objMySQLiteOpenHelper.OrderItem_TABLE, null, objContentValues);
     }
 
+
+    public String[] readorderitem(int int3) {
+        try {
+            String[] strResult = null;
+            Cursor objCursor = readSqLiteDatabase.query(OrderItem_TABLE,
+                    new String[]{Order_Ids,Member_Ids,Menu_Ids,Date_Orders,Amounts,Prices,Sums,Statuss},null,null,null,null,null);
+            if(objCursor != null){
+                if(objCursor.moveToFirst()){
+                    int num = objCursor.getCount();
+                    strResult = new String[num];
+                    for(int i =0;i<num;i++){
+                        strResult[i] = objCursor.getString(int3);
+                        objCursor.moveToNext();
+                    }
+                }
+            }
+            objCursor.close();
+            return strResult;
+        }catch (Exception e){
+            return null;
+        }
+    }//อ่านข้อมูลจากฐาน database
+
 }
+
