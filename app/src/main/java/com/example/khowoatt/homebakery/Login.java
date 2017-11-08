@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.khowoatt.homebakery.Database.MemberTable;
 import com.example.khowoatt.homebakery.Database.MenuTable;
 import com.example.khowoatt.homebakery.Database.OrderTable;
+import com.example.khowoatt.homebakery.Database.OrderitemTable;
 import com.example.khowoatt.homebakery.Database.OrderlistTable;
 
 import org.apache.http.HttpEntity;
@@ -33,6 +34,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class Login extends AppCompatActivity {
+    private OrderitemTable objorderitemTable;
     private MemberTable objMemberTable;
     private MenuTable objMenuTable;
     private OrderTable objOrderTable;
@@ -174,7 +176,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void Cdatabase() {
-
+        objorderitemTable = new OrderitemTable(this);
         objMemberTable = new MemberTable(this);
         objMenuTable = new MenuTable(this);
         objOrderTable = new OrderTable(this);

@@ -18,9 +18,9 @@ import com.squareup.picasso.Picasso;
 public class AdapterBread extends BaseAdapter {
 
     private Context objContextbread;
-    private String[] namebread,pricebread,imagebread;
+    private String[] namebread,pricebread,imagebread,idbread;
 
-    public AdapterBread(Context context,String[] namebread,String[] pricebread,String[] imagebread) {
+    public AdapterBread(Context context,String[] namebread,String[] pricebread,String[] imagebread,String[] idbread) {
         this.objContextbread = context;
         this.namebread = namebread;
         this.pricebread = pricebread;

@@ -80,14 +80,12 @@
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/addmenu"
+        android:id="@+id/amount"
         android:layout_width="65dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="0dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="109dp"
-        android:hint="1"
-        android:inputType="number"
+        android:hint="จำนวน"
         android:paddingTop="0dp"
         android:textAlignment="center"
         android:textSize="14sp"

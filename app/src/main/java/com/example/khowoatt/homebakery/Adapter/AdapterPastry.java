@@ -19,7 +19,7 @@ public class AdapterPastry extends BaseAdapter{
     private Context objcontext;
     private String[] foodString,sourceString,priceString;
 
-    public AdapterPastry(Context context, String[] foodString, String[] sourceString, String[] priceString) {
+    public AdapterPastry(Context context, String[] foodString, String[] sourceString, String[] priceString ,String[] idpastry) {
         this.objcontext = context;
         this.foodString = foodString; // ชื่อ
         this.sourceString = sourceString; // รูป

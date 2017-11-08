@@ -42,7 +42,6 @@ public class Register extends AppCompatActivity {
         Cdatabase();
     }
     private void Cdatabase() {
-
         objMemberTable = new MemberTable(this);
         objMenuTable = new MenuTable(this);
         objOrderTable = new OrderTable(this);

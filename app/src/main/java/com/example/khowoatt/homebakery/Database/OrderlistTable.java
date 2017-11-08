@@ -32,11 +32,11 @@ public class OrderlistTable {
         readSqLiteDatabase = objMySQLiteOpenHelper.getReadableDatabase();
     }
 
-    public long AddNewOrderListTable(String ordernum,String id_order, String id_menulist,String namemenu, String amount,String total) {
+    public long AddNewOrderListTable(String ordernum,String id_order, String id_menu,String namemenu, String amount,String total) {
         ContentValues objContentValues = new ContentValues();
         objContentValues.put(objMySQLiteOpenHelper.Order_Num,ordernum);
         objContentValues.put(objMySQLiteOpenHelper.OrderList_ID_ORDER, id_order);
-        objContentValues.put(objMySQLiteOpenHelper.OrderList_ID_MENU, id_menulist);
+        objContentValues.put(objMySQLiteOpenHelper.OrderList_ID_MENU, id_menu);
         objContentValues.put(objMySQLiteOpenHelper.Name_Menu,namemenu);
         objContentValues.put(objMySQLiteOpenHelper.OrderList_AMOUNT, amount);
         objContentValues.put(objMySQLiteOpenHelper.OrderLIST_TOTAL, total);

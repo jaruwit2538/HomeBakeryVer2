@@ -20,7 +20,7 @@ public class AdapterSnack extends BaseAdapter{
     private Context objContextSnack;
     private String[] namesnack,pricesnack,imagesnack;
 
-    public AdapterSnack(Context context,String[] namesnack, String[] pricesnack, String[] imagesnack) {
+    public AdapterSnack(Context context,String[] namesnack, String[] pricesnack, String[] imagesnack,String[] idsnack) {
         this.objContextSnack = context;
         this.namesnack = namesnack;
         this.pricesnack = pricesnack;

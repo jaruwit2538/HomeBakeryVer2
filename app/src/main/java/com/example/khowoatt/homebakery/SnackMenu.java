@@ -13,7 +13,7 @@ import com.example.khowoatt.homebakery.Database.MenuTable;
 public class SnackMenu extends AppCompatActivity {
     private MenuTable objMenutable;
     private ListView MenuListview;
-    private String[] name,price,image,detail;
+    private String[] name,price,image,detail,ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +24,24 @@ public class SnackMenu extends AppCompatActivity {
         createListView();
     }
     private void createListView() {
-
+        final String[] idsnack = objMenutable.readALLMenuTable4(0);
         final String[] strnamesnack = objMenutable.readALLMenuTable4(1);
         final String[] strpicsnack = objMenutable.readALLMenuTable4(3);
         final String[] strpricesnack = objMenutable.readALLMenuTable4(4);
         final String[] detailsnack = objMenutable.readALLMenuTable4(2);
 
-        AdapterSnack objMyAdapterSnack = new AdapterSnack(SnackMenu.this, strnamesnack,strpicsnack,strpricesnack);
+        AdapterSnack objMyAdapterSnack = new AdapterSnack(SnackMenu.this, strnamesnack,strpicsnack,strpricesnack,idsnack);
         MenuListview.setAdapter(objMyAdapterSnack);
         MenuListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ids = idsnack;
                 name = strnamesnack;
                 price = strpicsnack;
                 image = strpricesnack;
                 detail = detailsnack;
                 Intent intent = new Intent(SnackMenu.this, DetailMenu.class);
+                intent.putExtra("id",idsnack[position]);
                 intent.putExtra("name", strnamesnack[position]);
                 intent.putExtra("price",strpicsnack[position]);
                 intent.putExtra("image",strpricesnack[position]);

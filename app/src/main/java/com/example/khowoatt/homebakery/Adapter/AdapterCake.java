@@ -19,7 +19,7 @@ public class AdapterCake extends BaseAdapter{
     private Context objcontextcake;
     private String[] namecake,pricecake,imagecake;
 
-    public AdapterCake(Context context,String[] namecake, String[] pricecake, String[] imagecake) {
+    public AdapterCake(Context context,String[] namecake, String[] pricecake, String[] imagecake,String[] idcake) {
         this.objcontextcake = context;
         this.namecake = namecake;
         this.pricecake = pricecake;
